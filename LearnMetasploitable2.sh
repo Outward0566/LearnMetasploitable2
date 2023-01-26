@@ -63,8 +63,7 @@ sleep 0.1
 ##########################################
 ##########################################
 printf "welcome to me learnin metasploitable2\nPlease make sure both attacker machine and mestaspolitable2 are on the same vmnetwork\n"
-ipt=192.168.187.128 #mysetup
-# read -p "please type target ip " ipt
+read -p "please type target ip " ipt
 printf "registered ${ipt} as target\n"
 declare -i choose
 read -p "pick a route: (1) (2) (3) " choose
